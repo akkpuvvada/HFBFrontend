@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Container } from 'react-bootstrap'
 import {
-	Grid,
-	Breadcrumbs,
-	Link,
-	Typography,
 	AppBar,
 	Tabs,
 	Tab,
 } from '@mui/material'
 import './home.css'
+import EventList from '../components/EventList'
+import FoodList from '../components/FoodList'
+import InventoryList from '../components/InventoryList'
 
 const Home = () => {
 	const [selectedTab, setSelectedTab] = useState(0)
@@ -35,13 +34,21 @@ const Home = () => {
 							<p>create event</p>
 						)}
 						{selectedTab === 1 && (
-							<p>view event</p>
+							<>
+								<EventList />
+							</>
 						)}
 						{selectedTab === 2 && (
-							<p>food list</p>
+							<>
+								<p>food list</p>
+								<FoodList />
+							</>
 						)}
 						{selectedTab === 3 && (
-							<p>Inventory</p>
+							<>
+								<p>Inventory</p>
+								<InventoryList />
+							</>
 						)}
 					</div>
 				</div>
