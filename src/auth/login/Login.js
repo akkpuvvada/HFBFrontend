@@ -1,65 +1,110 @@
-import axios from "axios";
-import React from "react";
-import { Button, Col, Container, Form, FormGroup, FormLabel, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Login = () => {
-
-    const loginAPI = 'https://tararoutray.com/demo/react-auth/login.php';
-    const navigate = useNavigate();
-
-    const submitLoginForm = (event) => {
-        event.preventDefault();
-        const formElement = document.querySelector('#loginForm');
-        const formData = new FormData(formElement);
-        const formDataJSON = Object.fromEntries(formData);
-        const btnPointer = document.querySelector('#login-btn');
-        btnPointer.innerHTML = 'Please wait..';
-        btnPointer.setAttribute('disabled', true);
-        axios.post(loginAPI, formDataJSON).then((response) => {
-            btnPointer.innerHTML = 'Login';
-            btnPointer.removeAttribute('disabled');
-            const data = response.data;
-            const token = data.token;
-            if (!token) {
-                alert('Unable to login. Please try after some time.');
-                return;
-            }
-            localStorage.clear();
-            localStorage.setItem('user-token', token);
-            setTimeout(() => {
-                navigate('/');
-            }, 500);
-
-        }).catch((error) => {
-            btnPointer.innerHTML = 'Login';
-            btnPointer.removeAttribute('disabled');
-            alert("Oops! Some error occured.");
-        });
-    }
-
-    return (
-        <React.Fragment>
-            <Container className="my-5">
-                <h2 className="fw-normal mb-5">Login To React Auth Demo</h2>
-                <Row>
-                    <Col md={{span: 6}}>
-                        <Form id="loginForm" onSubmit={submitLoginForm}>
-                            <FormGroup className="mb-3">
-                                <FormLabel htmlFor={'login-username'}>Username</FormLabel>
-                                <input type={'text'} className="form-control" id={'login-username'} name="username" required />
-                            </FormGroup>
-                            <FormGroup className="mb-3">
-                                <FormLabel htmlFor={'login-password'}>Password</FormLabel>
-                                <input type={'password'} className="form-control" id={'login-password'} name="password" required />
-                            </FormGroup>
-                            <Button type="submit" className="btn-success mt-2" id="login-btn">Login</Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
-        </React.Fragment>
-    );
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
-export default Login;
+const theme = createTheme();
+
+export default function SignIn() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}
