@@ -1,0 +1,31 @@
+.appBar {
+    background-color: '#fff';
+    color: #999 !important;
+    flex-direction: 'row';
+  }
+
+.appBarContainer {
+    padding: '0 2rem';
+    background-color: '#fff';
+  }
+
+.MuiAppBar-root {
+  background-color: #ccc !important;
+}
+.Mui-selected {
+  color: #000 !important;
+}
+
+.MuiTab-root {
+  text-transform: 'none !important';
+}
+
+.MuiTabs-indicator {
+  background-color: #6484e4;
+  margin-bottom: 5;
+  width: '30%';
+}
+
+.content-section {
+  margin: 1% 2%;
+}

@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import axiosPost from '../../Global/Axios/axiosPost';
 import { useSnackbar } from 'notistack'
 import showSuccessSnackbar from '../../Global/Snackbar/successSnackbar'
+import jwt from "jwt-decode"
 
 function Copyright(props) {
   return (
@@ -51,6 +52,8 @@ export default function SignIn() {
     const response = await axiosPost(url, { data: payload, headers })
     if (response?.data?.token) {
       localStorage.setItem('accessToken', response?.data?.token)
+      const decodedToken = jwt(response?.data?.token);
+      localStorage.setItem('username', decodedToken.userName.trim())
       showSuccessSnackbar(enqueueSnackbar, 'Login Success')
       setTimeout(() => {
         navigate('/');

@@ -21,12 +21,13 @@ root.render(
 						<Route path='login' element={<Login />} />
 					</Route>
 					<Route path="/" element={<App />}>
-						<Route path='' element={
+						<Route path='/home' element={
 							<ProtectedRoute>
 								<Home />
 							</ProtectedRoute>
 						} />
 					</Route>
+					
 				</Routes>
 			</BrowserRouter>
 		</SnackbarProvider>
