@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axiosPost from '../../Global/Axios/axiosPost';
+import { useSnackbar } from 'notistack'
+import showSuccessSnackbar from '../../Global/Snackbar/successSnackbar'
 
 function Copyright(props) {
   return (
@@ -29,13 +32,29 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+
+  const { enqueueSnackbar } = useSnackbar()
+
+  const handleSubmit = async event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const payload = {
+      "email": data.get('email'),
+      "password": data.get('password'),
+    }
     console.log({
       email: data.get('email'),
       password: data.get('password'),
-    });
+    })
+    const url = '/login/'
+    const headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    }
+    const response = await axiosPost(url, { data: payload, headers })
+    localStorage.setItem('accessToken', response.token)
+    if (response?.data?.token) {
+      showSuccessSnackbar(enqueueSnackbar, 'Login Success')
+    }
   };
 
   return (

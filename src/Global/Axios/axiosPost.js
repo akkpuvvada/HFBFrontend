@@ -22,27 +22,27 @@ axiosPost.interceptors.response.use(
   function (response) {
     return response
   },
-  (error) => {
-    const originalRequest = error.config
-    if (error.response.status === 401 && error.config.url !== '/login/') {
-      const payload = {
-        refresh: localStorage.getItem('refresh'),
-      }
-      return checkLogin(`login/refresh/`, { data: payload })
-        .then((res) => {
-          if (res.status === 200) {
-            localStorage.setItem('access', res.data.access)
-            originalRequest.headers.Authorization = `Bearer ${res.data.access}`
-            return axiosPost(originalRequest)
-          }
-        })
-        .catch((err) => {
-          window.location.reload()
-          return Promise.reject(err)
-        })
-    }
-    return Promise.reject(error)
-  },
+  // (error) => {
+  //   const originalRequest = error.config
+  //   if (error.response.status === 401 && error.config.url !== '/login/') {
+  //     const payload = {
+  //       refresh: localStorage.getItem('refresh'),
+  //     }
+  //     return checkLogin(`login/refresh/`, { data: payload })
+  //       .then((res) => {
+  //         if (res.status === 200) {
+  //           localStorage.setItem('access', res.data.access)
+  //           originalRequest.headers.Authorization = `Bearer ${res.data.access}`
+  //           return axiosPost(originalRequest)
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         window.location.reload()
+  //         return Promise.reject(err)
+  //       })
+  //   }
+  //   return Promise.reject(error)
+  // },
 )
 
 export default axiosPost
