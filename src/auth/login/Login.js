@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 import axiosPost from '../../Global/Axios/axiosPost';
 import { useSnackbar } from 'notistack'
 import showSuccessSnackbar from '../../Global/Snackbar/successSnackbar'
@@ -34,6 +35,7 @@ const theme = createTheme();
 export default function SignIn() {
 
   const { enqueueSnackbar } = useSnackbar()
+  const navigate = useNavigate();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -42,18 +44,17 @@ export default function SignIn() {
       "email": data.get('email'),
       "password": data.get('password'),
     }
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
     const url = '/login/'
     const headers = {
       'Content-Type': 'application/json; charset=UTF-8',
     }
     const response = await axiosPost(url, { data: payload, headers })
-    localStorage.setItem('accessToken', response.token)
     if (response?.data?.token) {
+      localStorage.setItem('accessToken', response?.data?.token)
       showSuccessSnackbar(enqueueSnackbar, 'Login Success')
+      setTimeout(() => {
+        navigate('/');
+    }, 500);
     }
   };
 
