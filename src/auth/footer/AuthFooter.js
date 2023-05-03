@@ -6,7 +6,7 @@ const AuthFooter = () => {
         <React.Fragment>
             <footer className="bg-light border-top py-3 fixed-bottom">
                 <Container>
-                    &copy; React Auth Demo - 2022
+                    &copy; Houston Food Bank - 2022
                 </Container>
             </footer>
         </React.Fragment>

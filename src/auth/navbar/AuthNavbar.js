@@ -8,7 +8,7 @@ const AuthNavbar = () => {
         <React.Fragment>
             <Navbar bg="dark" expand="lg" className="navbar-dark">
                 <Container>
-                    <Navbar.Brand>React Auth Demo</Navbar.Brand>
+                    <Navbar.Brand>Houston Food Bank</Navbar.Brand>
                 </Container>
             </Navbar>
         </React.Fragment>

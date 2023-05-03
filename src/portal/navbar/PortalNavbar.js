@@ -17,10 +17,11 @@ const PortalNavbar = () => {
         <React.Fragment>
             <Navbar bg="dark" expand="lg" className="navbar-dark">
                 <Container>
-                    <Navbar.Brand>React Auth Demo | Portal</Navbar.Brand>
+                    <Navbar.Brand>Houston Food Bank | Portal</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
+                            <Navbar.Brand>{localStorage.getItem('username')}</Navbar.Brand>
                             <Nav.Link>
                                 <Button className="btn-warning" onClick={logout}>Logout</Button>
                             </Nav.Link>
