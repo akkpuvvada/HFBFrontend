@@ -54,6 +54,7 @@ export default function SignIn() {
       localStorage.setItem('accessToken', response?.data?.token)
       const decodedToken = jwt(response?.data?.token);
       localStorage.setItem('username', decodedToken.userName.trim())
+      localStorage.setItem('id', decodedToken?.userId?.trim())
       showSuccessSnackbar(enqueueSnackbar, 'Login Success')
       setTimeout(() => {
         navigate('/');

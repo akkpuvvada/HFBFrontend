@@ -9,6 +9,7 @@ import './home.css'
 import EventList from '../components/EventList'
 import FoodList from '../components/FoodList'
 import InventoryList from '../components/InventoryList'
+import AddEvent from '../components/AddEvent'
 
 const Home = () => {
 	const [selectedTab, setSelectedTab] = useState(0)
@@ -31,7 +32,7 @@ const Home = () => {
 					</AppBar>
 					<div className='content-section'>
 						{selectedTab === 0 && (
-							<p>create event</p>
+							<AddEvent />
 						)}
 						{selectedTab === 1 && (
 							<>
