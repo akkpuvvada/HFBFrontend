@@ -43,6 +43,59 @@ const EventList = (props) => {
   return (
     <>
       <Paper className="root">
+        {/* <Grid
+          container
+          spacing={1}
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="stretch"
+        >
+          <Grid
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            item
+            justifyContent="center"
+          >
+            <TextField
+              name="location"
+              onChange={(e) => setFormData({ ...formData, "location": e.target.value })}
+              value={formData?.location}
+              fullWidth
+              label={"Location"}
+            />
+          </Grid>
+          <Grid
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            item
+            justifyContent="center"
+          >
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label="Date of Event"
+                onChange={(newValue) => setFormData({ ...formData, "sdate": newValue.$d })}
+                fullWidth
+                value={formData?.date}
+              />
+            </LocalizationProvider>
+          </Grid>
+
+          <Grid
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            item
+            justifyContent="center"
+          >
+            <Button onClick={handleSubmit} variant="contained">Add FoodItem</Button>
+          </Grid>
+        </Grid> */}
+
         <TableContainer className="tableContainer">
           <Table stickyHeader aria-label="sticky table">
             <TableHead>

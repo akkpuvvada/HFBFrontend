@@ -57,7 +57,7 @@ export default function SignIn() {
       localStorage.setItem('id', decodedToken?.userId?.trim())
       showSuccessSnackbar(enqueueSnackbar, 'Login Success')
       setTimeout(() => {
-        navigate('/');
+        navigate('/home');
     }, 500);
     }
   };
