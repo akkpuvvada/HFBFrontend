@@ -22,12 +22,12 @@ root.render(
 					</Route>
 					<Route path="/" element={<App />}>
 						<Route path='/home' element={
-							// <ProtectedRoute>
-							<Home />
-							// </ProtectedRoute>
+							<ProtectedRoute>
+								<Home />
+							</ProtectedRoute>
 						} />
 					</Route>
-					
+
 				</Routes>
 			</BrowserRouter>
 		</SnackbarProvider>
